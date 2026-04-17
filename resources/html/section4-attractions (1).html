@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>The Dubai Mall — Attractions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@200;300;400&family=Barlow+Condensed:wght@300;400;700&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+/* ══ TOKENS ══ */
+:root{
+  --c-void:#060504;--c-depth:#0F0D0B;--c-charcoal:#1C1916;
+  --c-muted:#7A756E;--c-stone:#B0A898;--c-cream:#E8DCC8;
+  --c-off-white:#F2EDE4;--c-white:#FDFAF6;
+  --c-gold:#C8A96E;--c-gold-lt:#DEC08A;
+  --f-serif:"Playfair Display",Georgia,serif;
+  --f-sans:"Outfit","Helvetica Neue",sans-serif;
+  --f-display:"Barlow Condensed",sans-serif;
+  --lux:cubic-bezier(0.25,0,0,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{width:100%;background:var(--c-void);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* GRAIN */
+.grain{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px}
+
+/* ══ INTRO SECTION ══ */
+#attractions-intro{
+  position:relative;width:100%;height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--c-void);text-align:center;padding:80px 48px;z-index:10;
+}
+#attractions-intro-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 55% at 50% 45%, rgba(200,149,60,.08) 0%, transparent 62%),var(--c-void);
+}
+#attractions-intro .section-num{
+  position:absolute;top:36px;left:48px;
+  font-family:var(--f-display);font-size:10px;letter-spacing:.22em;
+  color:rgba(200,169,110,.45);font-weight:400;
+  display:flex;align-items:center;gap:10px;
+}
+#attractions-intro .section-num::after{content:"";width:24px;height:1px;background:rgba(200,169,110,.25)}
+
+.ai-eyebrow{
+  font-family:var(--f-sans);font-size:10px;font-weight:300;
+  letter-spacing:.32em;text-transform:uppercase;
+  color:var(--c-gold);margin-bottom:28px;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  position:relative;z-index:2;opacity:0;transform:translateY(12px);
+}
+.ai-eyebrow::before,.ai-eyebrow::after{content:"";width:32px;height:1px;background:rgba(200,169,110,.4)}
+.ai-headline{
+  font-family:var(--f-serif);font-size:clamp(42px,6vw,80px);font-weight:400;
+  color:var(--c-white);line-height:1.05;letter-spacing:-.02em;
+  position:relative;z-index:2;opacity:0;transform:translateY(18px);
+}
+.ai-headline em{font-style:italic;color:var(--c-cream)}
+.ai-divider{display:flex;align-items:center;gap:20px;width:200px;margin:24px auto 28px;position:relative;z-index:2;opacity:0}
+.ai-divider-line{flex:1;height:1px;background:rgba(200,169,110,.2)}
+.ai-divider-gem{width:5px;height:5px;border:1px solid rgba(200,169,110,.4);transform:rotate(45deg);flex-shrink:0}
+.ai-sub{
+  font-family:var(--f-sans);font-size:clamp(13px,1.3vw,16px);font-weight:300;
+  color:var(--c-stone);line-height:1.75;max-width:560px;
+  margin:0 auto 40px;position:relative;z-index:2;opacity:0;transform:translateY(12px);
+}
+.ai-stats{display:flex;gap:56px;justify-content:center;align-items:center;position:relative;z-index:2;opacity:0;transform:translateY(14px)}
+.ai-stat{text-align:center}
+.ai-stat-num{font-family:var(--f-display);font-size:clamp(30px,3.5vw,44px);font-weight:700;color:var(--c-white);letter-spacing:-.02em;line-height:1}
+.ai-stat-num sub{font-size:.42em;color:var(--c-gold);font-family:var(--f-serif);font-style:italic;font-weight:300;vertical-align:super}
+.ai-stat-label{font-family:var(--f-sans);font-size:9px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:var(--c-muted);margin-top:7px}
+.ai-stat-divider{width:1px;height:32px;background:rgba(200,169,110,.18)}
+.ai-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;opacity:0}
+.ai-scroll-line{width:1px;height:28px;background:linear-gradient(to bottom,var(--c-gold),transparent);animation:needlePulse 2.2s ease-in-out infinite}
+.ai-scroll-text{font-family:var(--f-sans);font-size:9px;font-weight:300;letter-spacing:.26em;text-transform:uppercase;color:rgba(200,169,110,.5)}
+@keyframes needlePulse{0%,100%{opacity:.5;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.15)}}
+
+/* ══ GALLERY SECTION ══ */
+#gallery{
+  position:relative;
+  width:100%;
+  padding:0;
+  z-index:5;
+}
+
+/* Progress dots — right side */
+.gallery-progress{
+  position:fixed;right:36px;top:50%;transform:translateY(-50%);
+  z-index:100;display:flex;flex-direction:column;align-items:center;gap:24px;
+  opacity:0;transition:opacity .4s;
+}
+.gallery-progress.visible{opacity:1}
+.gallery-dot{
+  width:10px;height:10px;border-radius:50%;
+  border:1px solid rgba(200,169,110,.3);background:transparent;
+  transition:all .4s var(--lux);cursor:pointer;
+}
+.gallery-dot.active{
+  background:var(--c-gold);border-color:var(--c-gold);
+  box-shadow:0 0 8px rgba(200,169,110,.4);
+}
+
+/* Cards */
+.gallery-cards{
+  position:relative;
+  max-width:1200px;
+  margin:0 auto;
+  padding:40px 48px 120px;
+}
+.attraction-card{
+  position:sticky;
+  top:80px;
+  width:100%;
+  height:75vh;
+  min-height:480px;
+  border-radius:20px;
+  overflow:hidden;
+  margin-bottom:60px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(200,169,110,.08);
+  transform-origin:center top;
+}
+.attraction-card:last-child{margin-bottom:0}
+
+.card-image{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 1.2s var(--lux);
+}
+.attraction-card:hover .card-image{transform:scale(1.04)}
+
+.card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(6,5,4,.85) 0%, rgba(6,5,4,.3) 40%, rgba(6,5,4,.08) 100%);
+}
+
+.card-content{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:56px 52px;
+  z-index:2;
+}
+.card-eyebrow{
+  font-family:var(--f-display);font-size:10px;font-weight:300;
+  letter-spacing:.28em;text-transform:uppercase;
+  color:var(--c-gold);margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+}
+.card-eyebrow::before{content:"";width:20px;height:1px;background:var(--c-gold)}
+.card-title{
+  font-family:var(--f-serif);font-size:clamp(32px,4.5vw,60px);
+  font-weight:400;color:var(--c-white);line-height:1.1;
+  letter-spacing:-.02em;margin-bottom:16px;
+}
+.card-title em{font-style:italic;color:var(--c-cream)}
+.card-desc{
+  font-family:var(--f-sans);font-size:clamp(13px,1.1vw,15px);
+  font-weight:300;color:var(--c-stone);line-height:1.7;
+  max-width:480px;
+}
+.card-number{
+  position:absolute;top:40px;right:48px;
+  font-family:var(--f-display);font-size:clamp(60px,8vw,120px);
+  font-weight:700;color:rgba(200,169,110,.15);
+  line-height:1;letter-spacing:-.04em;z-index:1;
+}
+
+
+/* Responsive */
+@media(max-width:768px){
+  .gallery-cards{padding:24px 20px 80px}
+  .card-content{padding:36px 28px}
+  .attraction-card{height:65vh;min-height:400px;top:60px;border-radius:14px}
+  .gallery-tab{width:44px;height:44px;border-radius:10px}
+  .gallery-tab svg{width:18px;height:18px}
+  .card-number{top:24px;right:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<!-- ══ INTRO ══ -->
+<div id="attractions-intro">
+  <div id="attractions-intro-bg"></div>
+  <div class="section-num">05</div>
+  <span class="ai-eyebrow">Entertainment &amp; Experiences</span>
+  <h1 class="ai-headline">Attractions at<br/><em>Dubai Mall</em></h1>
+  <div class="ai-divider">
+    <div class="ai-divider-line"></div>
+    <div class="ai-divider-gem"></div>
+    <div class="ai-divider-line"></div>
+  </div>
+  <p class="ai-sub">
+    From the mesmerising Dubai Fountain to the underwater wonders of the
+    Dubai Aquarium, experience world-class entertainment and cultural
+    landmarks that transform every visit into an unforgettable journey.
+  </p>
+  <div class="ai-stats">
+    <div class="ai-stat"><div class="ai-stat-num">20<sub>+</sub></div><div class="ai-stat-label">Attractions</div></div>
+    <div class="ai-stat-divider"></div>
+    <div class="ai-stat"><div class="ai-stat-num">10M<sub>+</sub></div><div class="ai-stat-label">Annual Visitors</div></div>
+    <div class="ai-stat-divider"></div>
+    <div class="ai-stat"><div class="ai-stat-num">5</div><div class="ai-stat-label">Signature Experiences</div></div>
+  </div>
+  <div class="ai-scroll">
+    <div class="ai-scroll-line"></div>
+    <span class="ai-scroll-text">Explore</span>
+  </div>
+</div>
+
+<!-- ══ GALLERY ══ -->
+<section id="gallery">
+
+  <!-- Progress dots -->
+  <div class="gallery-progress" id="galleryProgress">
+    <div class="gallery-dot active" data-index="0"></div>
+    <div class="gallery-dot" data-index="1"></div>
+    <div class="gallery-dot" data-index="2"></div>
+    <div class="gallery-dot" data-index="3"></div>
+    <div class="gallery-dot" data-index="4"></div>
+  </div>
+
+  <div class="gallery-cards">
+
+    <!-- 1 — ARTE Museum -->
+    <div class="attraction-card" data-card="0">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=1400&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-number">01</div>
+      <div class="card-content">
+        <div class="card-eyebrow">Immersive Art</div>
+        <h2 class="card-title">ARTE <em>Museum</em></h2>
+        <p class="card-desc">Step into a realm where digital art projections transform vast spaces into living canvases — an immersive journey through light, colour, and boundless imagination.</p>
+      </div>
+    </div>
+
+    <!-- 2 — Dubai Aquarium -->
+    <div class="attraction-card" data-card="1">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1400&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-number">02</div>
+      <div class="card-content">
+        <div class="card-eyebrow">Underwater Wonder</div>
+        <h2 class="card-title">Dubai Mall <em>Aquarium</em></h2>
+        <p class="card-desc">Walk through a 48-metre acrylic tunnel surrounded by glowing blue water and over 33,000 marine animals — one of the world's largest suspended aquariums.</p>
+      </div>
+    </div>
+
+    <!-- 3 — House of Hype -->
+    <div class="attraction-card" data-card="2">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1400&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-number">03</div>
+      <div class="card-content">
+        <div class="card-eyebrow">Futuristic Entertainment</div>
+        <h2 class="card-title">House of <em>Hype</em></h2>
+        <p class="card-desc">A neon-drenched, multi-sensory entertainment space where cutting-edge technology meets urban culture — gaming, art, music, and immersive experiences collide.</p>
+      </div>
+    </div>
+
+    <!-- 4 — Dubai Ice Rink -->
+    <div class="attraction-card" data-card="3">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1515281239448-2abe76e4e4f4?w=1400&q=80')"></div>
+      <div class="card-overlay"></div>
+      <div class="card-number">04</div>
+      <div class="card-content">
+        <div class="card-eyebrow">Ice &amp; Spectacle</div>
+        <h2 class="card-title">Dubai <em>Ice Rink</em></h2>
+        <p class="card-desc">An Olympic-size rink beneath dramatic arena lighting — host to world-class figure skating shows, hockey matches, and unforgettable family moments.</p>
+      </div>
+    </div>
+
+    <!-- 5 — Chinatown -->
+    <div class="attraction-card" data-card="4">
+      <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1513415564515-763d91423bdd?w=1400&q=80')"></div>
+      <div class="card-overlay"></div>
+      
+      <div class="card-number">05</div>
+      <div class="card-content">
+        <div class="card-eyebrow">Cultural Quarter</div>
+        <h2 class="card-title">Dubai Mall <em>Chinatown</em></h2>
+        <p class="card-desc">Vibrant lantern-filled streets, authentic cuisine, and artisanal crafts — a cultural enclave that transports you to the heart of East Asia within the mall.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* ── Intro entrance ── */
+const itl = gsap.timeline({delay:.3});
+itl.to(".ai-eyebrow",{opacity:1,y:0,duration:.7,ease:"power3.out"})
+   .to(".ai-headline",{opacity:1,y:0,duration:.8,ease:"power3.out"},"-=.45")
+   .to(".ai-divider",{opacity:1,duration:.6,ease:"power2.out"},"-=.5")
+   .to(".ai-sub",{opacity:1,y:0,duration:.7,ease:"power3.out"},"-=.4")
+   .to(".ai-stats",{opacity:1,y:0,duration:.7,ease:"power3.out"},"-=.45")
+   .to(".ai-scroll",{opacity:1,duration:.6,ease:"power2.out"},"-=.3");
+
+/* ── Card stacking + progress dots ── */
+const cards = gsap.utils.toArray(".attraction-card");
+const dots = document.querySelectorAll(".gallery-dot");
+const progressEl = document.getElementById("galleryProgress");
+
+/* Show/hide progress dots when gallery is in view */
+ScrollTrigger.create({
+  trigger:"#gallery",
+  start:"top 80%",
+  end:"bottom 20%",
+  onEnter:()=>progressEl.classList.add("visible"),
+  onLeave:()=>progressEl.classList.remove("visible"),
+  onEnterBack:()=>progressEl.classList.add("visible"),
+  onLeaveBack:()=>progressEl.classList.remove("visible"),
+});
+
+cards.forEach((card, i) => {
+  if (i < cards.length - 1) {
+    ScrollTrigger.create({
+      trigger: card,
+      start: "top 80px",
+      end: "bottom 80px",
+      scrub: true,
+      onUpdate: (self) => {
+        const p = self.progress;
+        gsap.set(card, {
+          scale: 1 - p * 0.06,
+          filter: `brightness(${1 - p * 0.3})`,
+        });
+      }
+    });
+  }
+
+  gsap.from(card, {
+    y: 120,
+    opacity: 0.4,
+    scrollTrigger: {
+      trigger: card,
+      start: "top 90%",
+      end: "top 40%",
+      scrub: 1,
+    }
+  });
+
+  ScrollTrigger.create({
+    trigger: card,
+    start: "top 50%",
+    end: "bottom 50%",
+    onEnter: () => setActiveDot(i),
+    onEnterBack: () => setActiveDot(i),
+  });
+});
+
+function setActiveDot(idx) {
+  dots.forEach((d, i) => d.classList.toggle("active", i === idx));
+}
+
+/* Dot click → scroll to card */
+dots.forEach(dot => {
+  dot.addEventListener("click", () => {
+    const idx = parseInt(dot.dataset.index);
+    cards[idx].scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+</script>
+</body>
+</html>
