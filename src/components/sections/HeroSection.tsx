@@ -1,20 +1,32 @@
+import { useState } from "react"
 import { GoldDivider } from "../ui/GoldDivider"
 import { ScrollCue } from "../ui/ScrollCue"
 
 const HERO_STAGE_BG = "radial-gradient(ellipse 50% 210% at 23% 50%, #ff000014 75%, #00000082 80%, rgb(6 5 4 / 88%) 85%)"
 
 export function HeroSection() {
+	const [isLoaded, setIsLoaded] = useState(false)
+
 	return (
 		<div id="hero" className="fixed inset-0 z-[100] flex overflow-hidden" style={{ opacity: 0, pointerEvents: "none", background: HERO_STAGE_BG }}>
 			{/* ── Left video panel ── */}
 			<div id="hero-video-panel" className="absolute left-0 top-0 bottom-0 z-[1] overflow-hidden hero-video-panel" style={{ width: "100%" }}>
+				{/* Fallback Image */}
+				<img
+					src="/images/hero-image.png"
+					alt="Dubai Mall"
+					fetchPriority="high"
+					loading="eager"
+					className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 z-1 ${isLoaded ? "opacity-0" : "opacity-100"}`}
+				/>
 				<video
 					id="hero-vid"
-					src="/videos/hero-section-video.mp4"
 					autoPlay
 					muted
 					loop
 					playsInline
+					preload="auto"
+					className={isLoaded ? "opacity-100" : "opacity-0"}
 					style={{
 						position: "absolute",
 						inset: 0,
@@ -24,7 +36,10 @@ export function HeroSection() {
 						opacity: 1,
 						zIndex: 1,
 					}}
-				></video>
+					onCanPlayThrough={() => setIsLoaded(true)}
+				>
+					<source src="/videos/hero-section-video.mp4" type="video/mp4" />
+				</video>
 				<div
 					className="absolute inset-0"
 					style={{
