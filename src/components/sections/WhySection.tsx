@@ -1,4 +1,5 @@
-import { WHY_BG_STYLES, WHY_CHAPTERS, WHY_IMG_STYLES } from "@/components/data/whySection"
+import { VerticalDotProgress } from "@/components/ui/VerticalDotProgress"
+import { WHY_BG_STYLES, WHY_CHAPTERS, WHY_IMG_STYLES } from "@/data/whySection"
 
 export function WhySection() {
 	return (
@@ -70,9 +71,12 @@ export function WhySection() {
 				{WHY_CHAPTERS.map((chapter, i) => (
 					<div
 						key={chapter.id}
+						id={`wimg${i}`}
 						className="absolute top-0 bottom-0 left-0 z-[2] pointer-events-none"
 						style={{
 							width: "100%",
+							opacity: i === 0 ? 1 : 0,
+							willChange: "opacity",
 							background: `url(${chapter.img}) no-repeat center center`,
 							backgroundSize: "cover",
 							backgroundPosition: "center",
@@ -213,48 +217,7 @@ export function WhySection() {
 				<div id="wpFill" style={{ display: "none" }} />
 				<div id="wpLabel" style={{ display: "none" }} />
 
-				{WHY_CHAPTERS.map((_, i) => (
-					<div
-						key={i}
-						data-i={i}
-						className="wp-dot-wrap why-side-dot flex-shrink-0"
-						style={{
-							position: "relative",
-							width: 32,
-							height: 32,
-							display: "flex",
-							alignItems: "center",
-							justifyContent: "center",
-							cursor: "default",
-						}}
-					>
-						<div
-							className="wp-dot-inner wp-dot"
-							style={{
-								width: i === 0 ? 6 : 5,
-								height: i === 0 ? 6 : 5,
-								borderRadius: "50%",
-								border: `1px solid ${i === 0 ? "var(--c-gold)" : "rgba(200,169,110,.5)"}`,
-								background: i === 0 ? "var(--c-gold)" : "transparent",
-								boxShadow: i === 0 ? "0 0 8px rgba(200,169,110,.5)" : "none",
-								transition: "all 0.45s cubic-bezier(0.25,0,0,1)",
-							}}
-						/>
-						{i < WHY_CHAPTERS.length - 1 && (
-							<div
-								style={{
-									position: "absolute",
-									bottom: -11,
-									left: "50%",
-									transform: "translateX(-50%)",
-									width: 1,
-									height: 10,
-									background: "linear-gradient(to bottom, rgba(200,169,110,.2), rgba(200,169,110,.1))",
-								}}
-							/>
-						)}
-					</div>
-				))}
+				<VerticalDotProgress count={WHY_CHAPTERS.length} activeIndex={0} dotClassName="wp-dot" />
 			</div>
 
 			{/* Scroll hint */}
