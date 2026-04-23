@@ -165,7 +165,7 @@ src/
 
 ```bash
 # Clone the repository
-git clone <your-repo-link>
+git clone https://github.com/Vaishali785/Dubai-Mall-Sales-Deck.git
 
 # Install dependencies
 pnpm install
@@ -173,8 +173,6 @@ pnpm install
 # Run locally
 pnpm dev
 
-# Build for production
-pnpm build
 ```
 
 ---
