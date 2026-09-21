@@ -6,7 +6,7 @@ The project explores how a destination-focused website could use cinematic story
 
 **This is an unofficial, independent concept and is not affiliated with, endorsed by, or sponsored by Dubai Mall or Emaar Properties.**
 
-🔗 Live Demo: https://dubai-mall.netlify.app
+🔗 Live Demo: https://dubai-mall-vaishali.vercel.app/
 
 ---
 
@@ -205,4 +205,4 @@ It focuses not just on building UI, but on crafting a narrative-driven interface
 
 Vaishali
 
-[https://linkedin.com/in/vaishali-aggarwal-react-developer]
+[https://linkedin.com/in/vaishali-aggarwal-dev]
