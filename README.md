@@ -1,6 +1,10 @@
-# Dubai Mall – Immersive Web Experience
+# Dubai Mall – Independent Redesign Concept
 
-A cinematic, scroll-driven web experience inspired by Dubai Mall, designed to showcase luxury, scale, and immersive storytelling through modern frontend techniques.
+An independent, cinematic website redesign concept for Dubai Mall, created as a frontend design and development case study.
+
+The project explores how a destination-focused website could use cinematic storytelling, motion, and interaction to communicate the scale and atmosphere of a major retail destination.
+
+**This is an unofficial, independent concept and is not affiliated with, endorsed by, or sponsored by Dubai Mall or Emaar Properties.**
 
 🔗 Live Demo: https://dubai-mall.netlify.app
 
