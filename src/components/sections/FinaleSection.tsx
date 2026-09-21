@@ -295,7 +295,7 @@ const FinaleSection = ({ onReady, onBackEdge }: FinaleSectionProps) => {
 				ref={footer}
 				className="absolute bottom-0 left-0 right-0 z-20 border-t border-[hsl(var(--gold)/0.15)] bg-[hsl(var(--void)/0.8)] px-8 py-6 backdrop-blur-sm"
 			>
-				<div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
+				<div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 max-[850px]:flex-col max-[850px]:justify-center max-[850px]:gap-2">
 					<span className="font-condensed text-[10px] uppercase finale-text-gold">
 						The Dubai Mall · Downtown Dubai
 					</span>
