@@ -76,7 +76,11 @@ const FinaleSection = ({ onReady, onBackEdge }: FinaleSectionProps) => {
 				.timeline({ defaults: { ease: "power3.out" }, paused: true })
 				.to(lightCore.current, { opacity: 1, scale: 1, duration: 1.2 }, 0.15)
 				.to(lightHalo.current, { opacity: 1, scale: 1.2, duration: 1.6 }, 0.2)
-				.to(silhouette.current, { opacity: 0.85, scale: 1, filter: "blur(0px)", duration: 1.8 }, 0.35)
+				.to(
+					silhouette.current,
+					{ opacity: 0.85, scale: 1, filter: "blur(0px)", duration: 1.8 },
+					0.35,
+				)
 				.to(lightHalo.current, { scale: 1.85, opacity: 0.72, duration: 1.8 }, 0.7)
 				.to(lightCore.current, { scale: 1.35, duration: 1.8 }, 0.7)
 				.to(scrollCue.current, { opacity: 0, y: -8, duration: 0.35, ease: "power2.out" }, 0.45)
@@ -219,7 +223,8 @@ const FinaleSection = ({ onReady, onBackEdge }: FinaleSectionProps) => {
 					ref={lightCore}
 					className="pointer-events-none absolute left-1/2 top-[58%] h-[40vh] w-[40vh] -translate-x-1/2 -translate-y-1/2 rounded-full will-change-transform"
 					style={{
-						background: "radial-gradient(circle, hsl(var(--gold-pale) / 0.9) 0%, hsl(var(--gold) / 0.45) 30%, transparent 70%)",
+						background:
+							"radial-gradient(circle, hsl(var(--gold-pale) / 0.9) 0%, hsl(var(--gold) / 0.45) 30%, transparent 70%)",
 						filter: "blur(20px)",
 					}}
 				/>
@@ -240,7 +245,9 @@ const FinaleSection = ({ onReady, onBackEdge }: FinaleSectionProps) => {
 				<div className="mx-auto max-w-3xl text-center">
 					<div ref={eyebrow} className="mb-10 flex items-center justify-center gap-4">
 						<span className="finale-line h-px w-12" />
-						<span className="font-condensed text-[11px] uppercase finale-text-gold">The Final Chapter</span>
+						<span className="font-condensed text-[11px] uppercase finale-text-gold">
+							The Final Chapter
+						</span>
 						<span className="finale-line h-px w-12" />
 					</div>
 
@@ -251,7 +258,10 @@ const FinaleSection = ({ onReady, onBackEdge }: FinaleSectionProps) => {
 							</span>
 						</span>
 						<span className="mt-2 block overflow-hidden">
-							<span ref={setLine(1)} className="inline-block italic finale-text-gold-light will-change-transform">
+							<span
+								ref={setLine(1)}
+								className="inline-block italic finale-text-gold-light will-change-transform"
+							>
 								Destination
 							</span>
 						</span>
@@ -286,15 +296,27 @@ const FinaleSection = ({ onReady, onBackEdge }: FinaleSectionProps) => {
 				className="absolute bottom-0 left-0 right-0 z-20 border-t border-[hsl(var(--gold)/0.15)] bg-[hsl(var(--void)/0.8)] px-8 py-6 backdrop-blur-sm"
 			>
 				<div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
-					<span className="font-condensed text-[10px] uppercase finale-text-gold">The Dubai Mall · Downtown Dubai</span>
-					<span className="font-sans-luxe text-[11px] text-[hsl(var(--cream)/0.5)]">© {new Date().getFullYear()} — Crafted in light.</span>
+					<span className="font-condensed text-[10px] uppercase finale-text-gold">
+						The Dubai Mall · Downtown Dubai
+					</span>
+					<span className="font-sans-luxe text-[11px] text-[hsl(var(--cream)/0.4)] tracking-wide">
+						Independent concept · Unofficial · Not affiliated with Dubai Mall
+					</span>
+					<span className="font-sans-luxe text-[11px] text-[hsl(var(--cream)/0.5)]">
+						© {new Date().getFullYear()} — Vaishali · Design & Development
+					</span>
 				</div>
 			</div>
 
-			<div ref={scrollCue} className="pointer-events-none absolute bottom-8 left-1/2 z-20 -translate-x-1/2">
+			<div
+				ref={scrollCue}
+				className="pointer-events-none absolute bottom-8 left-1/2 z-20 -translate-x-1/2"
+			>
 				<div className="flex items-center gap-3">
 					<span className="h-px w-8 bg-[hsl(var(--gold)/0.35)]" />
-					<span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-[hsl(var(--gold)/0.7)]">Scroll To Reveal</span>
+					<span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-[hsl(var(--gold)/0.7)]">
+						Scroll To Reveal
+					</span>
 					<span className="h-px w-8 bg-[hsl(var(--gold)/0.35)]" />
 				</div>
 			</div>
